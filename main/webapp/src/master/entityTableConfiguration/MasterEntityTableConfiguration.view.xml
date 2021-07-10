@@ -1,0 +1,35 @@
+<mvc:View
+      xmlns:mvc="sap.ui.core.mvc"
+      xmlns="sap.m"
+      xmlns:l="sap.ui.layout"
+      xmlns:f="sap.f"
+      controllerName="com.sap.sct.idtm_ui.src.master.entityTableConfiguration.MasterEntityTableConfiguration"
+>
+    <f:DynamicPage
+        id="overviewPage"
+        class="overviewPage"
+    >
+        <f:content>
+            <l:BlockLayout
+                class="overviewPageBlockLayout"
+                background="Transparent"
+            >
+                <l:BlockLayoutRow>
+                    <l:BlockLayoutCell
+                        width="100%"
+                        class="overviewPageBlockLayoutCell"
+                    >
+                        <Title
+                            level="H1"
+                            text="{i18n>ENTITY_TABLES}"
+                            class="sapUiSmallMarginEnd"
+                        />
+                        <mvc:XMLView
+                            viewName="com.sap.sct.idtm_ui.src.master.entityTableConfiguration.components.entityTableConfigurationTable.EntityTableConfigurationTable"
+                        />
+                    </l:BlockLayoutCell>
+                </l:BlockLayoutRow>
+            </l:BlockLayout>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

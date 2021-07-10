@@ -1,0 +1,45 @@
+<mvc:View
+      xmlns:core="sap.ui.core"
+      xmlns:mvc="sap.ui.core.mvc"
+      xmlns="sap.m"
+      controllerName="com.sap.sct.idtm_ui.src.master.entityTableConfiguration.components.entityTableConfigurationTable.entityTableConfigurationTable"
+>
+    <Table
+       id="identityTableConfigurationTable"
+       inset="false"
+       mode="MultiSelect"
+       items="{
+            path: 'data>/ingredients',
+            sorter: {
+                path: 'name'
+            }
+        }"
+    >
+        <headerToolbar>
+            <core:Fragment
+                fragmentName="com.sap.sct.idtm_ui.src.master.entityTableConfiguration.components.entityTableConfigurationTable.fragments.HeaderToolBar"
+                type="XML"
+            />
+        </headerToolbar>
+
+        <columns>
+            <core:Fragment
+                fragmentName="com.sap.sct.idtm_ui.src.master.entityTableConfiguration.components.entityTableConfigurationTable.fragments.TableColumns"
+                type="XML"
+            />
+        </columns>
+        <items>
+            <ColumnListItem
+                type="Navigation"
+                press=".onTableListItemPress"
+            >
+                <cells>
+                    <core:Fragment
+                        fragmentName="com.sap.sct.idtm_ui.src.master.entityTableConfiguration.components.entityTableConfigurationTable.fragments.TableCells"
+                        type="XML"
+                    />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</mvc:View>

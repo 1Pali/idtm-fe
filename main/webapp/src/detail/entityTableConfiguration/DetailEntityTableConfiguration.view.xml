@@ -1,0 +1,48 @@
+<mvc:View
+    controllerName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.DetailEntityTableConfiguration"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+>
+    <ObjectPageLayout
+        id="ObjectPageLayout"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true"
+        isChildPage="true"
+        upperCaseAnchorBar="false"
+        showFooter="{ui>/footerVisibility}"
+    >
+        <headerTitle>
+            <core:Fragment
+                fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.header.EntityTableConfigurationHeader"
+                type="XML"
+            />
+        </headerTitle>
+
+        <headerContent>
+            <core:Fragment
+                    fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.header.EntityTableConfigurationHeaderContent"
+                    type="XML"
+            />
+        </headerContent>
+
+        <sections>
+            <core:Fragment
+                    fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.Sections"
+                    type="XML"
+            />
+        </sections>
+
+        <footer>
+            <core:Fragment
+                fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.footer.Footer"
+                type="XML"
+            />
+        </footer>
+    </ObjectPageLayout>
+</mvc:View>

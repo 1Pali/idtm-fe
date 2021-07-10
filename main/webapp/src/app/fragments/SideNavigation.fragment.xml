@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+    xmlns="sap.tnt"
+    xmlns:core="sap.ui.core"
+>
+    <SideNavigation id="sideNavigation">
+        <item>
+            <NavigationList
+                expanded="true"
+                itemSelect=""
+            >
+                <NavigationListItem
+                    icon="sap-icon://product"
+                    text="{i18n>GO_ENTITY_TABLE_CONFIGURATION}"
+                    select="goToEntityTableConfiguration"
+                />
+            </NavigationList>
+        </item>
+    </SideNavigation>
+</core:FragmentDefinition>

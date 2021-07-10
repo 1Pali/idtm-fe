@@ -1,0 +1,116 @@
+{
+	"_version": "1.0.0",
+	"sap.app": {
+		"id": "com.sap.sct.idtm_ui",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{MAIN_TITLE}}"
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": false
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal",
+			"sap_belize"
+		],
+		"fullWidth": true
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.sap.sct.idtm_ui.src.app.App",
+			"type": "XML",
+			"async": true
+		},
+		"config": {
+			"defaultView": "com.sap.sct.idtm_ui.src.app.App"
+		},
+		"dependencies": {
+			"minUI5Version": "1.54.3",
+			"libs": {
+				"sap.ui.core": {
+					
+				},
+				"sap.m": {
+					
+				},
+				"sap.ui.layout": {
+					
+				},
+				"sap.f": {
+
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.sap.sct.idtm_ui.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "style/style.css"
+				}
+			],
+			"img": [
+				{
+					"uri": "images/logo.png"
+				},
+				{
+					"uri": "images/logo_small.png"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"controlId": "flexibleColumnLayout",
+				"transition": "slide",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "entityTableConfiguration/:layout:",
+					"name": "MasterEntityTableConfiguration",
+					"target": [
+						"MasterEntityTableConfiguration",
+						"DetailEntityTableConfiguration"
+					]
+				},
+				{
+					"pattern": "entityTableConfigurationDetail/{tableConfiguration}/{layout}",
+					"name": "DetailEntityTableConfiguration",
+					"target": [
+						"MasterEntityTableConfiguration",
+						"DetailEntityTableConfiguration"
+					]
+				}
+			],
+			"targets": {
+				"MasterEntityTableConfiguration": {
+					"viewName": "MasterEntityTableConfiguration",
+					"viewPath": "com.sap.sct.idtm_ui.src.master.entityTableConfiguration",
+					"controlAggregation": "beginColumnPages"
+				},
+				"DetailEntityTableConfiguration": {
+					"viewName": "DetailEntityTableConfiguration",
+					"viewPath": "com.sap.sct.idtm_ui.src.detail.entityTableConfiguration",
+					"controlAggregation": "midColumnPages"
+				}
+			}
+		}
+	}
+}
