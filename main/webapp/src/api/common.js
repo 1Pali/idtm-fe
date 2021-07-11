@@ -16,8 +16,8 @@ sap.ui.define([
 
     return {
         RequestTypes: oRequestTypes,
-        AJAXRequest: function(sType, sUrl, oData, fnOnSuccess, sErrorMessage, bAsync) {
-            BusyDialog._getDialog.call(this).open();
+        AJAXRequest: function(oParent, sType, sUrl, oData, sErrorMessage, bAsync) {
+            BusyDialog._getDialog.call(oParent).open();
             return jQuery.ajax({
                 type: sType,
                 contentType: "application/json",
@@ -25,14 +25,13 @@ sap.ui.define([
                 dataType: "json",
                 data: JSON.stringify(oData),
                 async: bAsync,
-                success: fnOnSuccess.bind(this),
                 error: function (oResponse) {
                     return false;
                     MessageToast.show(sErrorMessage);
                 },
                 complete: function () {
-                    BusyDialog._getDialog.call(this).close();
-                }.bind(this)
+                    BusyDialog._getDialog.call(oParent).close();
+                }.bind(oParent)
             });
         }
     };

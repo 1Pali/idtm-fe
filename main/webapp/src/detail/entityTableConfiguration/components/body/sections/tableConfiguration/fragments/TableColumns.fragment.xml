@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Column>
+        <Title
+            text="{i18n>TableConfigurationColumn}"
+        />
+    </Column>
+
+    <Column>
+        <Title
+            text="{i18n>TableConfigurationDataType}"
+        />
+    </Column>
+
+    <Column>
+        <Title
+            text="{i18n>TableConfigurationAssociationKey}"
+        />
+    </Column>
+</core:FragmentDefinition>

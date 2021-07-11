@@ -7,11 +7,6 @@
             <ToolbarSpacer/>
 
             <Button
-                    text="{i18n>ImportEntityTableButton}"
-                    press="onImportPress"
-            />
-
-            <Button
                 text="{i18n>CreateEntityTableButton}"
                 press="onCreatePress"
             />

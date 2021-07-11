@@ -82,7 +82,7 @@ sap.ui.define([
 
             var oIngredient = Entity.Ingredient.newObject(sName, nEnergy, nProtein, nCarbohydrate, nFat, nFiber, nPrice, null, nIngredientTypeId);
 
-            Request.Ingredient.create.call(this._oCaller, oIngredient, Util.getModel.call(this._oCaller, "data"), "/ingredients", true);
+//            Request.Ingredient.create.call(this._oCaller, oIngredient, Util.getModel.call(this._oCaller, "data"), "/ingredients", true);
             this._oDialog.close();
         },
 

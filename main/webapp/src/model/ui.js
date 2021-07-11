@@ -7,12 +7,8 @@ sap.ui.define([
 
     return {
         getInitial: new JSONModel({
-            ingredient: {
-              previousIngredient: undefined,
-            },
-            recipe: {
-                previousRecipe: undefined,
-                previousRecipeDescriptions: undefined
+            entityTable: {
+              previousEntityTable: undefined,
             },
             selectedObjectIndex: undefined,
             footerVisibility: false,

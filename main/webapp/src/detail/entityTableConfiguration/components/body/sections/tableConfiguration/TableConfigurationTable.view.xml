@@ -1,0 +1,42 @@
+<mvc:View
+      xmlns:core="sap.ui.core"
+      xmlns:mvc="sap.ui.core.mvc"
+      xmlns="sap.m"
+      controllerName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.tableConfiguration.TableConfigurationTable"
+>
+    <Table
+       id="identityTableConfigurationTable"
+       inset="false"
+       mode="MultiSelect"
+       items="{
+            path: 'data>/tableColumns',
+            sorter: {
+                path: 'columnName'
+            }
+        }"
+    >
+        <headerToolbar>
+            <core:Fragment
+                fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.tableConfiguration.fragments.HeaderToolBar"
+                type="XML"
+            />
+        </headerToolbar>
+
+        <columns>
+            <core:Fragment
+                fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.tableConfiguration.fragments.TableColumns"
+                type="XML"
+            />
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <core:Fragment
+                        fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.tableConfiguration.fragments.TableCells"
+                        type="XML"
+                    />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</mvc:View>

@@ -2,7 +2,7 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/mvc/Controller",
     "com/sap/sct/idtm_ui/src/util/util",
-    "com/sap/sct/idtm_ui/src/dialog/entityTableConfiguration/deleteEntityTable",
+    "com/sap/sct/idtm_ui/src/dialog/entityTable/deleteEntityTable",
     "com/sap/sct/idtm_ui/src/api/Request",
     "sap/m/MessageToast",
     "com/sap/sct/idtm_ui/src/dialog/confirmDialog",
@@ -15,15 +15,15 @@ sap.ui.define([
         formatter: Formatter,
 
         onInit: function () {
-            Util.getRouter.call(this).getRoute("MasterEntityTableConfiguration").attachPatternMatched(this._onIngredientMatched, this);
-            Util.getRouter.call(this).getRoute("DetailEntityTableConfiguration").attachPatternMatched(this._onIngredientMatched, this);
+            Util.getRouter.call(this).getRoute("MasterEntityTableConfiguration").attachPatternMatched(this.onEntityTableMatched, this);
+            Util.getRouter.call(this).getRoute("DetailEntityTableConfiguration").attachPatternMatched(this.onEntityTableMatched, this);
         },
 
-        _onIngredientMatched: function (oEvent) {
-            var sIngredientIndex = oEvent.getParameter("arguments").ingredient;
-            Util.getModel.call(this, "ui").setProperty("/selectedObjectIndex", sIngredientIndex);
+        onEntityTableMatched: function (oEvent) {
+            var sEntityTableIndex = oEvent.getParameter("arguments").entityTable;
+            Util.getModel.call(this, "ui").setProperty("/selectedObjectIndex", sEntityTableIndex);
             this.getView().bindElement({
-                path: "/entityTableConfiguration/" + sIngredientIndex,
+                path: "/entityTables/" + sEntityTableIndex,
                 model: "data"
             });
         },
@@ -39,22 +39,22 @@ sap.ui.define([
         },
 
         onExit: function () {
-            Util.getRouter.call(this).getRoute("MasterIngredients").detachPatternMatched(this._onIngredientMatched, this);
-            Util.getRouter.call(this).getRoute("DetailIngredients").detachPatternMatched(this._onIngredientMatched, this);
+            Util.getRouter.call(this).getRoute("MasterEntityTableConfiguration").detachPatternMatched(this.onEntityTableMatched, this);
+            Util.getRouter.call(this).getRoute("DetailEntityTableConfiguration").detachPatternMatched(this.onEntityTableMatched, this);
         },
 
         handleFullScreen: function () {
             var sNextLayout = Util.getModel.call(this).getProperty("/actionButtonsInfo/midColumn/fullScreen");
-            var sIngredientIndex = Util.getModel.call(this, "ui").getProperty("/selectedObjectIndex");
+            var sEntityTableIndex = Util.getModel.call(this, "ui").getProperty("/selectedObjectIndex");
 
-            Util.getRouter.call(this).navTo("DetailIngredients", {layout: sNextLayout, ingredient: sIngredientIndex});
+            Util.getRouter.call(this).navTo("DetailEntityTableConfiguration", {layout: sNextLayout, entityTable: sEntityTableIndex});
         },
 
         handleExitFullScreen: function () {
             var sNextLayout = Util.getModel.call(this).getProperty("/actionButtonsInfo/midColumn/exitFullScreen");
-            var sIngredientIndex = Util.getModel.call(this, "ui").getProperty("/selectedObjectIndex");
+            var sEntityTableIndex = Util.getModel.call(this, "ui").getProperty("/selectedObjectIndex");
 
-            Util.getRouter.call(this).navTo("DetailEntityTableConfiguration", {layout: sNextLayout, ingredient: sIngredientIndex});
+            Util.getRouter.call(this).navTo("DetailEntityTableConfiguration", {layout: sNextLayout, entityTable: sEntityTableIndex});
         },
 
         handleClose: function () {
@@ -68,22 +68,22 @@ sap.ui.define([
         },
 
         _onClose: function () {
-            var oPreviousIngredient = Util.getModel.call(this, "ui").getProperty("/ingredient/previousIngredient");
+            var oPreviousIngredient = Util.getModel.call(this, "ui").getProperty("/entityTable/previousEntityTable");
             Util.getModel.call(this, "data").setProperty(Util.getBindingPath.call(this, "data"), oPreviousIngredient);
             this._closeDetailPage();
         },
 
         onDeletePress: function (oEvent) {
-            DeleteIngredientDialog.getDialog.call(this, this._deleteIngredient);
+            DeleteEntityTableDialog.getDialog.call(this, this._deleteEntityTable);
         },
 
-        _deleteIngredient: function () {
-            var oIngredient = Util.getBindingObject.call(this, "data");
-            Request.Ingredient.delete.call(this, oIngredient.id, Util.getModel.call(this, "data"), "/entityTableConfiguration", true)
-                .then(() => {
-                    var sNextLayout = Util.getModel.call(this).getProperty("/actionButtonsInfo/midColumn/closeColumn");
-                    Util.getRouter.call(this).navTo("MasterEntityTableConfiguration", {layout: sNextLayout});
-                });
+        _deleteEntityTable: function () {
+            var oEntityTable = Util.getBindingObject.call(this, "data");
+//            Request.Ingredient.delete.call(this, oIngredient.id, Util.getModel.call(this, "data"), "/entityTableConfiguration", true)
+//                .then(() => {
+//                    var sNextLayout = Util.getModel.call(this).getProperty("/actionButtonsInfo/midColumn/closeColumn");
+//                    Util.getRouter.call(this).navTo("MasterEntityTableConfiguration", {layout: sNextLayout});
+//                });
         },
 
 
@@ -104,8 +104,8 @@ sap.ui.define([
                 Util.toggleShowFooter.call(this);
             } else {
                 ConfirmDialog.getSaveChanges.call(this, () => {
-                    Request.Ingredient.update.call(this, oActualIngredient, Util.getModel.call(this, "data"),
-                        Util.getBindingPath.call(this, "data"), true);
+//                    Request.Ingredient.update.call(this, oActualIngredient, Util.getModel.call(this, "data"),
+//                        Util.getBindingPath.call(this, "data"), true);
 
                     if (oImageUploader.getValue()) {
                         oImageUploader.upload();
@@ -118,19 +118,19 @@ sap.ui.define([
         },
 
         onFooterCancelPress: function (oEvent) {
-            var oActualIngredient = Util.getBindingObject.call(this, "data");
-            var oPreviousIngredient = Util.getModel.call(this, "ui").getProperty("/ingredient/previousIngredient");
-
-            if (!Util.isFlatObjectEqual(oActualIngredient, oPreviousIngredient)) {
-                ConfirmDialog.getDiscardChanges.call(this, () => {
-                    Util.getModel.call(this, "data")
-                        .setProperty(Util.getBindingPath.call(this, "data"), oPreviousIngredient);
-
-                    Util.toggleShowFooter.call(this);
-                });
-            } else {
+//            var oActualIngredient = Util.getBindingObject.call(this, "data");
+//            var oPreviousIngredient = Util.getModel.call(this, "ui").getProperty("/ingredient/previousIngredient");
+//
+//            if (!Util.isFlatObjectEqual(oActualIngredient, oPreviousIngredient)) {
+//                ConfirmDialog.getDiscardChanges.call(this, () => {
+//                    Util.getModel.call(this, "data")
+//                        .setProperty(Util.getBindingPath.call(this, "data"), oPreviousIngredient);
+//
+//                    Util.toggleShowFooter.call(this);
+//                });
+//            } else {
                 Util.toggleShowFooter.call(this);
-            }
+//            }
 
         },
     });

@@ -6,7 +6,7 @@
     <ObjectPageDynamicHeaderTitle>
         <expandedHeading>
             <m:Title
-                text="{data>name}"
+                text="{data>tableName}"
                 wrapping="true"
                 class="sapUiSmallMarginEnd"
             />

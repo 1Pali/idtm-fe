@@ -6,7 +6,6 @@
     <ObjectPageSection
         title="{i18n>GeneralInformationSection}"
         titleUppercase="false"
-        visible="{ui>/editMode}"
     >
         <subSections>
             <ObjectPageSubSection>
@@ -20,30 +19,14 @@
     </ObjectPageSection>
 
     <ObjectPageSection
-        title="{i18n>PictureSection}"
+        title="{i18n>TableConfigurationSection}"
         titleUppercase="false"
     >
         <subSections>
             <ObjectPageSubSection>
                 <blocks>
                     <mvc:XMLView
-                        viewName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.picture.Picture"
-                    />
-                </blocks>
-            </ObjectPageSubSection>
-        </subSections>
-    </ObjectPageSection>
-
-    <ObjectPageSection
-        title="{i18n>DescriptionSection}"
-        titleUppercase="false"
-    >
-        <subSections>
-            <ObjectPageSubSection>
-                <blocks>
-                    <core:Fragment
-                        fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.description.Description"
-                        type="XML"
+                            viewName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.tableConfiguration.TableConfigurationTable"
                     />
                 </blocks>
             </ObjectPageSubSection>

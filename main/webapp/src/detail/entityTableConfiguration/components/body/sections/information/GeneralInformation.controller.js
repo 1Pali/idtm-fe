@@ -1,11 +1,11 @@
 sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/mvc/Controller",
-    "com/sap/sct/idtm_ui/src/model/section/editIngredient",
+    "com/sap/sct/idtm_ui/src/model/section/editEntityTable",
     "com/sap/sct/idtm_ui/src/util/util",
     "com/sap/sct/idtm_ui/src/model/formatter",
     "sap/ui/core/ValueState"
-], function (JSONModel, Controller, EditIngredient, Util, Formatter, ValueState) {
+], function (JSONModel, Controller, EditEntityTable, Util, Formatter, ValueState) {
     "use strict";
 
     return Controller.extend("com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.information.GeneralInformation", {
@@ -13,7 +13,7 @@ sap.ui.define([
         formatter: Formatter,
 
         onInit: function () {
-            this.getView().setModel(EditIngredient.getInitial(), "generalInformartionSection");
+            this.getView().setModel(EditEntityTable.getInitial(), "generalInformartionSection");
         },
 
         getStateAndValidate: function (sValue, sId) {

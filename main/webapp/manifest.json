@@ -91,7 +91,7 @@
 					]
 				},
 				{
-					"pattern": "entityTableConfigurationDetail/{tableConfiguration}/{layout}",
+					"pattern": "entityTableConfigurationDetail/{entityTable}/{layout}",
 					"name": "DetailEntityTableConfiguration",
 					"target": [
 						"MasterEntityTableConfiguration",

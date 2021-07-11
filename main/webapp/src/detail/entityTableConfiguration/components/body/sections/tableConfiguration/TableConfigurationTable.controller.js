@@ -17,7 +17,7 @@ sap.ui.define([
 	) {
     "use strict";
 
-    return Controller.extend("com.sap.sct.idtm_ui.src.master.entityTableConfiguration.components.entityTableConfigurationTable.entityTableConfigurationTable", {
+    return Controller.extend("com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.body.sections.tableConfigurationTable.TableConfigurationTable", {
 		onInit: function () {
 			Request.EntityTable.getList(this, true).then((aEntityTables) => {
                 this.getOwnerComponent().getModel("data").setProperty("/entityTables", aEntityTables);
@@ -36,24 +36,8 @@ sap.ui.define([
 				});
 		},
 
-        onImportPress: function (oEvent) {
-
-        },
-
 		onCreatePress: function (oEvent) {
-        const newEntityTableIndex = this.getOwnerComponent().getModel("data")
-            .getProperty("/entityTables").push({
-                id: undefined,
-                tableName: "New Entity Table",
-                tableContent: undefined
-            }) - 1;
-
-        this.getOwnerComponent().getRouter().navTo("DetailEntityTableConfiguration",
-            {
-                layout: FioriLibrary.LayoutType.TwoColumnsMidExpanded,
-                entityTable: newEntityTableIndex
-            });
-            this.getOwnerComponent().getModel("ui").setProperty("/editMode", true);
+			DialogFactory.getCreateEntityTableDialog(this);
 		},
 
 		onDeletePress: function (oEvent) {

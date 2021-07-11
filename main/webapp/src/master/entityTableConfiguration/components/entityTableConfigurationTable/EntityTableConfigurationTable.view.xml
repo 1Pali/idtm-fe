@@ -9,7 +9,7 @@
        inset="false"
        mode="MultiSelect"
        items="{
-            path: 'data>/ingredients',
+            path: 'data>/entityTables',
             sorter: {
                 path: 'name'
             }

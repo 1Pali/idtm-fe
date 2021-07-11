@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <HBox>
+        <Text
+            text="{data>fieldName}"
+            visible="{= !${ui>/editMode}}"
+        />
+        <Input
+            value="{data>fieldName}"
+            visible="{ui>/editMode}"
+        />
+    </HBox>
+
+    <HBox>
+        <Text
+            text="{data>dataType}"
+            visible="{= !${ui>/editMode}}"
+        />
+        <Input
+            value="{data>dataType}"
+            visible="{ui>/editMode}"
+        />
+    </HBox>
+
+    <HBox>
+        <Text
+            text="{data>isKey}"
+            visible="{= !${ui>/editMode}}"
+        />
+        <CheckBox
+            selected="{data>isKey}"
+            visible="{ui>/editMode}"
+        />
+    </HBox>
+</core:FragmentDefinition>

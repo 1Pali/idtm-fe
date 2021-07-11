@@ -14,7 +14,7 @@
             class="sapUiTinyMarginEnd"
         >
             <Title
-                text="{data>name}"
+                text="{data>tableName}"
                 wrapping="true"
             />
         </FlexBox>

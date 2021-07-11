@@ -15,7 +15,7 @@
         headerContentPinnable="true"
         isChildPage="true"
         upperCaseAnchorBar="false"
-        showFooter="{ui>/footerVisibility}"
+        showFooter="{ui>/editMode}"
     >
         <headerTitle>
             <core:Fragment
@@ -23,13 +23,6 @@
                 type="XML"
             />
         </headerTitle>
-
-        <headerContent>
-            <core:Fragment
-                    fragmentName="com.sap.sct.idtm_ui.src.detail.entityTableConfiguration.components.header.EntityTableConfigurationHeaderContent"
-                    type="XML"
-            />
-        </headerContent>
 
         <sections>
             <core:Fragment
